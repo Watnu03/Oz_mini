@@ -5,7 +5,7 @@ const MovieCard = (item) => {
   const navigate = useNavigate();
 
   const handelClick = () => {
-    navigate('/details');
+    navigate(`/${item.id}`);
   };
 
   return (
