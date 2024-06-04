@@ -19,7 +19,7 @@ function App() {
           </main>
         }
       />
-      <Route path="/details" element={<MovieDetail />} />
+      <Route path="/details" element={< MovieDetail/>} />
     </Routes>
   );
 }

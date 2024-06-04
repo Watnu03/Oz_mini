@@ -7,26 +7,26 @@ const MovieDetail = () => {
   console.log(movieDetail);
   return (
     <div className="detail-container">
-      <img
-        className="detail-poster"
-        src={`https://image.tmdb.org/t/p/original/${movieDetail.poster_path}`}></img>
-      <div className="detail-description">
-        <div className="detail-description-content">
-          <p className="detail-description__title">{movieDetail.title}</p>
-          <p className="detail-description__vote-average">
-            {movieDetail.vote_average}
-          </p>
+      <div className="detail-media">
+        <img className='detail-poster' src={`https://image.tmdb.org/t/p/original/${movieDetail.poster_path}`} alt="poster" />
+        <button className="trailer-btn">View Trailer</button>
+      </div>
+      <div className="detail-info">
+        <div className="detail-info-main">
+          <span className="detail-info-title">
+            <p className="detail-title-tagline">{movieDetail.tagline}</p>
+            <p className="detail-title-name">{movieDetail.title}</p>
+          </span>
+          <span className="detail-vote_average">⭐{movieDetail.vote_average}</span>
         </div>
-        <p className="detail-description__genres">
-          {movieDetail.genres.map((genre) => {
+        <div className="detail-genres">
+          {movieDetail.genres.map((item) => {
             return (
-              <span className="detail-description__genre" key={genre.id}>
-                {genre.name}
-              </span>
+              <span className="detail-genre" key={item.id}>{item.name}</span>
             );
           })}
-        </p>
-        <p className="detail.description__overview">{movieDetail.overview}</p>
+        </div>
+        <div className="detail-overview">{movieDetail.overview}</div>
       </div>
     </div>
   );
