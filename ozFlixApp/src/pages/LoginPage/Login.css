@@ -1,20 +1,23 @@
-.signUp{
+.login{
+  height: 100vh;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
-.signUp-container{
-  width: 18rem;
+.login-container{
+  width: 360px;
   height: 100%;
-  padding-top: 70px;
+  padding-bottom: 200px;
   
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 }
-.signUp-container > h1{
+.login-container > h1{
   margin: 20px 0;
 }
-.signUp-form{
+.login-form{
   width: 100%;
   height: 100%;
   padding: 10px 0;
@@ -24,33 +27,28 @@
   flex-direction: column;
   align-items: center;
 }
-.sign-text{
+.login-input{
   width: 100%;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
-.sign-text label{
-  font-size: 14px;
-  font-weight: 500;
-}
-
-.sign-input input{
+.login-input input{
   width: 100%;
   height: 40px;
   padding: 0 10px;
   border-radius: 5px;
   border: solid 1px #a5a5a5;
 }
-.signUp-btn{
+.login-container .login-btn{
   width: 100%;
   height: 40px;
   margin: 20px 0;
-
+  font-weight: 900;
+  color: #fff;
   background-color: #FCD53F;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  color: #fff;
 }
-.signUp-btn:hover{
+.login-container .login-btn:hover{
   background-color: #f0d258;
 }

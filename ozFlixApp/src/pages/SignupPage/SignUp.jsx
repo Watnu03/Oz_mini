@@ -1,6 +1,5 @@
 import "./SignUp.css";
 
-//? 이 페이지에서는 nav bar 숨기고 싶음...
 const signUp = () => {
   return (
     <div className="signUp">
