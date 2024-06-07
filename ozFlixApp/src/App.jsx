@@ -5,6 +5,7 @@ import Nav from './components/Nav/Nav';
 import axios from "./api/axios";
 import MovieCard from "./components/MovieCard/MovieCard";
 import MovieDetail from "./pages/MovieDetailPage/MovieDetail";
+import Search from "./pages/Search/Search";
 import SignUp from './pages/SignupPage/SignUp';
 import Login from './pages/LoginPage/Login';
 
@@ -23,7 +24,7 @@ function App() {
 
   }
   useEffect(()=> {fetchMovieData()},[]);  
-  // console.log(movieList);
+  // console.log(movieList);0
 
   // Outlet 하위태그에 위치
   // 페이지 하나당 하나의 element가들어감 outlet에 하나의 컴포턴트태그
@@ -49,6 +50,7 @@ function App() {
             }
           />
           <Route path = "/detail/:id" element = {< MovieDetail />} />
+          <Route path = "/Search" element = {< Search />} />
         </Route>
           
         <Route path = "/login" element = {<Login />}/>

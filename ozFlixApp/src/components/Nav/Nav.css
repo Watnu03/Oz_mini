@@ -9,10 +9,9 @@
 
   position: fixed;
   z-index: 1;
-  
 }
 .nav{
-  width: 1240px;
+  width: 80%;
   height: 75px;
   padding: 0 4%;
 
@@ -46,6 +45,8 @@
 }
 
 .search-icon{
+  border: none;
+  background-color: #F6F6F6;
   position: absolute;
   right: 10px;
   top: 8px;
@@ -68,11 +69,27 @@
 
   cursor: pointer;
 }
-
 .nav-btn button:hover{
   color: #2b2b2b;
 }
 
-/* @media ( max-width: 1240px) {
-    
-} */
+/* 테블릿 가로 (해상도 768px ~ 1023px)*/ 
+@media all and (min-width:768px) and (max-width:1023px) { 
+  .nav{
+    width: 100%;
+  }
+} 
+/* 모바일 가로 & 테블릿 세로 (해상도 480px ~ 767px)*/ 
+@media all and (min-width:480px) and (max-width:767px) {
+  .nav{
+    width: 100%;
+    min-width: 480px;
+  }
+} 
+/* 모바일 세로 (해상도 ~ 479px)*/ 
+@media all and (max-width:479px) {
+  .nav{
+    width: 100%;
+    min-width: 480px;
+  }
+}

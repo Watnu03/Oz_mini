@@ -10,6 +10,9 @@ const Nav = () => {
 
   const handleChange = (e) => {
     setSearchValue(e.target.value);
+    // console.log(searchValue);
+    navigate(`/search?q=${e.target.value}`);
+    //query 문법
   }
 
   return (
@@ -23,11 +26,12 @@ const Nav = () => {
         <span className="search" >
           <span className="search-dummy"></span>
           <input 
-            type="text" 
+            type="search" 
             className="search-bar"
+            placeholder="영화를 검색해주세요."
             value={searchValue}
             onChange={handleChange}/>
-          <IoIosSearch className="search-icon"/>
+          <button className="search-icon"><IoIosSearch /></button>
         </span>
       </div>  
     </div>
