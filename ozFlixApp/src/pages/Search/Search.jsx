@@ -15,15 +15,21 @@ const Search = () => {
     /*1. useLocation() 를 사용하여 현재URL정보 가져오기
     2. 가져온 URL객체에서 search부분 을 return하기
     3. URLSearchParams가 URL뒤에 복잡하게 붙은 애들(파라미터)를 쉽게 쪼갤수 있다
-    new 키워드를 이용한 생성자를 통해 초기화하고 사용한다*/
+    new 키워드를 이용한 생성자를 통해 초기화하고 사용한다
+
+    useLocation으로 현재 URL뽑아오기 
+    > URLSearchParams으로 ?q={id}전체 뽑아오기
+    > 밑에 get('q')으로 뒤에 적힌 키워드 뽑아오기 */
     return new URLSearchParams(useLocation().search);
   };
   
+  let query = useQuery();
+  
   //딜레이 설정하기
   //가져온 'query'값이 바뀔때마다 500의 딜레이를 가지고 useDebounce가 실행됨
-  const debounceSearchQuery = useDebounce(query.get('query'), 500);
+  //검색어입력할때 한자적을때마다 서버에 요청하면 낭비 > 딜레이를 만들어서 불필요한 호출을 방지함
+  const debounceSearchQuery = useDebounce(query.get('q'), 500);
   
-  let query = useQuery();
 
   //사용자가 입력한 검색어만 가져와서 searchTerm에 넣기
   const searchTerm = query.get('q');
