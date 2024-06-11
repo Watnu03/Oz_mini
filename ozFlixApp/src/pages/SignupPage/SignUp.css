@@ -1,9 +1,9 @@
-.signUp{
+.signup{
   height: 100vh;
   display: flex;
   justify-content: center;
 }
-.signUp-container{
+.signup-container{
   width: 18rem;
   height: 100%;
   padding-bottom: 100px;
@@ -13,10 +13,20 @@
   align-items: center;
   justify-content: center;
 }
-.signUp-container > h1{
-  margin: 20px 0;
+.sub-title{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-.signUp-form{
+.sub-logo{
+  font-weight: 900;
+
+  cursor: pointer;
+}
+.sub-title > h1{
+  margin: 5px 0 20px 0;
+}
+.signup-form{
   width: 100%;
   height: 100%;
   padding: 10px 0;
@@ -42,7 +52,16 @@
   border-radius: 5px;
   border: solid 1px #a5a5a5;
 }
-.signUp-btn{
+.password-required{
+  margin-bottom: 5px;
+}
+.password-required > p{
+  font-size: 13px;
+  margin-top: 3px;
+  color: #848383; 
+}
+
+.signup-btn{
   width: 100%;
   height: 40px;
   margin: 20px 0;
@@ -53,26 +72,26 @@
   border-radius: 5px;
   cursor: pointer;
 }
-.signUp-btn:hover{
+.signup-btn:hover{
   background-color: #f0d258;
 }
 
 /* 테블릿 가로 (해상도 768px ~ 1023px)*/ 
 @media all and (min-width:768px) and (max-width:1023px) { 
-  .signUp{
+  .signup{
     width: 100%;
   }
 } 
 /* 모바일 가로 & 테블릿 세로 (해상도 480px ~ 767px)*/ 
 @media all and (min-width:480px) and (max-width:767px) {
-  .signUp{
+  .signup{
     width: 100%;
     min-width: 480px;
   }
 } 
 /* 모바일 세로 (해상도 ~ 479px)*/ 
 @media all and (max-width:479px) {
-  .signUp{
+  .signup{
     width: 100%;
     min-width: 480px;
   }

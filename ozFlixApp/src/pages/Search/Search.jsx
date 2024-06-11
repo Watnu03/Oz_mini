@@ -28,6 +28,8 @@ const Search = () => {
   //딜레이 설정하기
   //가져온 'query'값이 바뀔때마다 500의 딜레이를 가지고 useDebounce가 실행됨
   //검색어입력할때 한자적을때마다 서버에 요청하면 낭비 > 딜레이를 만들어서 불필요한 호출을 방지함
+
+  //useDebounce로 검색결과 상태를 관리한다
   const debounceSearchQuery = useDebounce(query.get('q'), 500);
   
 
@@ -37,14 +39,14 @@ const Search = () => {
   const fetchSearchMovie = async (searchTerm) => {
     try{
       const response = await axios.get(`/search/multi?include_adult=false&query=${searchTerm}`);
-      console.log(response);
       setSearchResult(response.data.results);
     }
     catch(error){
       console.log(error);
     }
   }
-
+  console.log(searchResult);
+  
   //[debounceSearchQuery]값이 변경될때마다 useEffect 실행
   useEffect(() => {
     console.log('useEffect 작동함');
@@ -56,28 +58,35 @@ const Search = () => {
     return(
       <Container>
         <section className="search-container">
-          {searchResult.map((movie) => {
-            if(movie.backdrop_path !== null && movie.media_type !== 'person'){
-              //만약 무비 backdrop_path가 null이 아니라면
-              // movieImageUrl에 주소+포스터 주소 붙히기
-              const movieImageUrl =
-                "https://image.tmdb.org/t/p/w500" + movie.backdrop_path;
-              return (
-                <div className="movie" key={movie.id}>
-                  <div
-                    onClick={() => navigate(`/detail/${movie.id}`)}
-                    className="movie__column-poster"
-                  >
-                    <img
-                      src={movieImageUrl}
-                      alt="movie"
-                      className="movie-poster"
-                    />
+          <p className="search-title">프로그램 검색 결과</p>
+          <div className="search">
+            {searchResult.map((movie) => {
+              if(movie.backdrop_path !== null && movie.media_type !== 'person'){
+                //만약 무비 backdrop_path가 null이 아니라면
+                // movieImageUrl에 주소+포스터 주소 붙히기
+                const movieImageUrl =
+                  "https://image.tmdb.org/t/p/w500" + movie.poster_path;
+                return (
+                  <div className="movie" key={movie.id}>
+                    <div
+                      onClick={() => navigate(`/detail/${movie.id}`)}
+                      className="movie__column-poster"
+                    >
+                      <img
+                        src={movieImageUrl}
+                        alt="movie"
+                        className="movie-poster"
+                      />
+                    </div>
+                    <div className="card-info">
+                        <p className="card-title">{movie.title}</p>
+                        <p className="card-vote_average">⭐{movie.vote_average}</p>
+                    </div>
                   </div>
-                </div>
-              );
-            }
-          })}
+                );
+              }
+            })}
+          </div>
         </section>
       </Container>
     );
@@ -102,6 +111,26 @@ const Container = styled.section`
   margin: auto;
 
   .search-container{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .search-title{
+    width: 84%;
+    height: 33px;
+
+    font-size: 21px;
+    font-weight: 600;
+
+    text-align: start;
+    line-height: 50px;
+    color: #a5a5a5;
+  }
+  .search{
+    width: 100%;
+    height: 100%;
+
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -110,17 +139,18 @@ const Container = styled.section`
   }
 
   .movie{
-    margin: 10px;
+    margin: 0px 10px 10px 10px;
+    cursor: pointer;
   }
   .movie:hover .movie-poster{
-  transform: scale(1.1);
-  transition: all 0.3s ;
+    transform: scale(1.1);
+    transition: all 0.3s ;
   }
   .movie__column-poster{
-    width:360px;
-    height: auto;
-    border-radius: 10px;
+    width:240px;
+    height: 360px;
 
+    border-radius: 10px;
     overflow: hidden;
   }
   .movie-poster {
@@ -144,6 +174,25 @@ const Container = styled.section`
   .card-vote_average {
     font-size: 0.8em;
   }
+  .card-info{
+    width: 100%;
+    height: 43px;
+    margin-top: 8px;
+    padding-left: 2px;
+
+    display: flex;
+    flex-direction: column;
+  }
+
+  .card-title {
+    margin-bottom: 5px;
+    font-size: 0.9em;
+  }
+
+  .card-vote_average {
+    font-size: 0.8em;
+  }
+
 
   .no-search-container{
     height: 100vh;
@@ -163,6 +212,9 @@ const Container = styled.section`
       width: 100%;
       margin: auto;
     }
+    .search-title{
+      text-align: center;
+    }
   } 
   /* 모바일 가로 & 테블릿 세로 (해상도 480px ~ 767px)*/ 
   @media all and (min-width:480px) and (max-width:767px) {
@@ -170,12 +222,18 @@ const Container = styled.section`
       width: 100%;
       margin: auto;
     }
+    .search-title{
+      text-align: center;
+    }
   } 
   /* 모바일 세로 (해상도 ~ 479px)*/ 
   @media all and (max-width:479px) {
     section{
       width: 100%;
       margin: auto;
+    }
+    .search-title{
+      text-align: center;
     }
   }
 `;

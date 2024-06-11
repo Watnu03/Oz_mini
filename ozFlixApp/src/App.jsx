@@ -6,7 +6,7 @@ import axios from "./api/axios";
 import MovieCard from "./components/MovieCard/MovieCard";
 import MovieDetail from "./pages/MovieDetailPage/MovieDetail";
 import Search from "./pages/Search/Search";
-import SignUp from './pages/SignupPage/SignUp';
+import Signup from './pages/SignupPage/Signup';
 import Login from './pages/LoginPage/Login';
 
 function App() {
@@ -54,7 +54,7 @@ function App() {
         </Route>
           
         <Route path = "/login" element = {<Login />}/>
-        <Route path = "/signUp" element = {<SignUp />}/>
+        <Route path = "/signup" element = {<Signup />}/>
       </Routes>
     </>
   );
