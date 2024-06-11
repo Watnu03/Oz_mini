@@ -70,19 +70,22 @@ const Nav = () => {
             onChange={handleChange}/>
           <button className="search-icon"><IoIosSearch /></button>
         </span>
-        {user && (
-          <span className='nav-btn'>
-            <UserImg
-              src={user.photoURL}
-              alt={user.displayName}
-              />
-            <DropDown>
-              <button className="bookmark-btn">북마크</button>
-              <button className="logout-btn" onClick={handleLogOut}>로그아웃</button>
-            </DropDown>
-            
-          </span>
-        )}
+        <SignOut>
+          {user && (
+            <span className='nav-btn'>
+              <UserImg
+                src={user.photoURL}
+                alt={user.displayName}
+                onerror="this.style.display='none'"
+                />
+              <Tail />
+              <DropDown>
+                <button className="bookmark-btn">북마크</button>
+                <button className="logout-btn" onClick={handleLogOut}>로그아웃</button>
+              </DropDown>
+            </span>
+          )}
+        </SignOut>
         
       </div>  
     </div>
@@ -93,10 +96,52 @@ const UserImg = styled.img`
   border-radius: 50%;
   width: 35px;
   height: 35px;
+
+  background-color: #cdcdcd;
 `;
 
+const Tail = styled.div`
+  position: absolute;
+  top: 31px;
+  right: 12px;
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 10px solid #a5a5a5;
+  opacity: 0;
+  `;
 const DropDown = styled.div`
-/* 이후에 css 예정 */
+  width: 80px;
+  position: absolute;
+  top: 40px;
+  right: -25px;
+  background-color: #a5a5a5;
+  text-align: center;
+  border-radius: 10px;
+  opacity: 0;
+  
+  button{
+    height: 23px;
+    background-color: #a5a5a5;
+    color: #fff;
+    }
+    `;
+const SignOut = styled.div`
+  position: relative;
+  
+  &:hover{
+    transform: scale(1.1);
+    transition: all 0.3s ;
+  
+    ${DropDown}{
+      opacity: 1;
+    }
+    ${Tail}{
+      opacity: 1;
+    }
+  }
 `;
+
 
 export default Nav
