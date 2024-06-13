@@ -80,11 +80,18 @@ const Nav = () => {
         <SignOut>
           {user && (
             <span className='nav-btn'>
+              {user.photoURL? (
               <UserImg
                 src={user.photoURL}
                 alt={user.displayName}
-                onerror="this.style.display='none'"
-                />
+                onerror="this.onerror=null; this.src='default-image.png';"
+              />
+            ) : (
+              <UserImg
+                src="default-image.png"
+                alt="Default Image"
+              />
+            )} 
               <Tail />
               <DropDown>
                 <button className="bookmark-btn">북마크</button>

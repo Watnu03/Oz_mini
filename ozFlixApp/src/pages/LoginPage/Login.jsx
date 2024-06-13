@@ -28,7 +28,7 @@ const Login = () => {
   const handleEmailLogin = async (e) => {
     e.preventDefault();
 
-    //여기서 getAuth()메소드를 새로 안가져오니 typeerror가 뜸
+    // 여기서 getAuth()메소드를 새로 안가져오니 typeerror가 뜸
     // const auth = getAuth();
 
     if (!chkEmail(email)) {
@@ -37,9 +37,10 @@ const Login = () => {
     }
 
     try {
-      const result = await signInWithEmailAndPassword(app, email, password);
-      const user = result.user;
-      console.log(user);
+      await signInWithEmailAndPassword(auth, email, password);
+      // const result = await signInWithEmailAndPassword(auth, email, password);
+      // const user = result.user;
+      // console.log(user);
       alert('로그인되었습니다');
       navigate('/');
     } 
