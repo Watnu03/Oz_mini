@@ -9,6 +9,19 @@ import Search from "./pages/Search/Search";
 import Signup from './pages/SignupPage/SignUp';
 import Login from './pages/LoginPage/Login';
 
+//! firebase 배포
+/*1)npm run build
+2)firebase CLI설치: npm install -g firebase-tools /firebase로그인: firebase login
+3)프로젝트 초기화: firebase init
+4)호스팅옵션은 Hosting : Congifure files for Firebase Hosting and (optionally) set up GitHub Action deploys 스페이스바선택>엔터
+5)Use an existing project 선택
+6-1)What do you want to use as your public directory? :dist
+6-2)Configure as a single-page app (rewrite all urls to /index.html)? :y
+6-3)Set up automatic builds and deploys with GitHub? :n
+6-4)File build/index.html already exists. Overwrite? :n
+7)firebase 배포: firebase deploy
+8)코드가 변경되면 build부터 다시하고 deploy까지> 페이지 들어가면 새로고침 한번 하기*/
+
 function App() {
 
   const [movieList, setMovieList] = useState([]);
