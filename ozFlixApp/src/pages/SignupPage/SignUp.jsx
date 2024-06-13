@@ -1,6 +1,7 @@
-import "./Signup.css";
+import "./SignUp.css";
 import {useNavigate} from "react-router-dom";
 import {useState} from "react";
+import app from '../../firebase';
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 
 //컴포넌트 첫글자를 소문자로 오타났더니 Hook이 안써짐
@@ -11,7 +12,7 @@ const Signup = () => {
   const [chkPassword, setChkPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
-  const auth = getAuth();
+  const auth = getAuth(app);
 
   //이메일 유효성 검사 정규표현식
   const checkEmail = (email) => {

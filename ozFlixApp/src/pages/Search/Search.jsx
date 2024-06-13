@@ -45,11 +45,11 @@ const Search = () => {
       console.log(error);
     }
   }
-  console.log(searchResult);
+  // console.log(searchResult);
   
   //[debounceSearchQuery]값이 변경될때마다 useEffect 실행
   useEffect(() => {
-    console.log('useEffect 작동함');
+    // console.log('useEffect 작동함');
     fetchSearchMovie(debounceSearchQuery);
   },[debounceSearchQuery]);
 

@@ -1,27 +1,27 @@
 import {useState, useEffect} from "react";
-import {useNavigate} from "react-router-dom";
+import {useNavigate, useLocation} from "react-router-dom";
 import "./Nav.css";
 import { IoIosSearch } from "react-icons/io";
 import styled from 'styled-components';
 
 import {getAuth, onAuthStateChanged, signOut } from 'firebase/auth';
-import auth from '../../firebase';
+import app from '../../firebase';
 
 const Nav = () => {
   const [searchValue, setSearchValue] = useState('');
   const [user, setUser] = useState(null);
 
-  const auth = getAuth();
-
+  const auth = getAuth(app);
 
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleChange = (e) => {
     setSearchValue(e.target.value);
     // console.log(searchValue);
     navigate(`/search?q=${e.target.value}`);
     //query 문법
-  }
+  }  
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -48,6 +48,13 @@ const Nav = () => {
         alert(error.message);
       });
   };
+
+  //검색페이지가 아닐때(페이지가 이동될때) 입력창 초기화
+  useEffect(() => {
+    if (location.pathname!== '/search') {
+      setSearchValue('');
+    }
+  }, [location]);
 
   return (
     <div className="header">

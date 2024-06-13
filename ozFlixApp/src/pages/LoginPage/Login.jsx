@@ -2,7 +2,7 @@ import "./Login.css";
 import {useNavigate} from "react-router-dom";
 import {useState} from "react";
 
-import auth from '../../firebase';
+import app from '../../firebase';
 //아래는 firebase.js에서 불러온게 아니라 npm설치한 firebase에서 불러오는거다
 import { 
   getAuth, 
@@ -14,6 +14,8 @@ import {
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const auth = getAuth(app);
 
   const navigate = useNavigate();
 
@@ -27,7 +29,7 @@ const Login = () => {
     e.preventDefault();
 
     //여기서 getAuth()메소드를 새로 안가져오니 typeerror가 뜸
-    const auth = getAuth();
+    // const auth = getAuth();
 
     if (!chkEmail(email)) {
         alert('유효한 이메일 주소를 입력해주세요.');
@@ -35,7 +37,7 @@ const Login = () => {
     }
 
     try {
-      const result = await signInWithEmailAndPassword(auth, email, password);
+      const result = await signInWithEmailAndPassword(app, email, password);
       const user = result.user;
       console.log(user);
       alert('로그인되었습니다');
@@ -50,8 +52,6 @@ const Login = () => {
   //Google로그인 클릭시
   const handleGoogleLogin = (e) => {
     e.preventDefault();
-    //인증객체 가져오기 > 구글로그인 팝업창 뜨게하기
-    const auth = getAuth();
 
     const provider = new GoogleAuthProvider();
     signInWithPopup(auth, provider)

@@ -6,7 +6,7 @@ import axios from "./api/axios";
 import MovieCard from "./components/MovieCard/MovieCard";
 import MovieDetail from "./pages/MovieDetailPage/MovieDetail";
 import Search from "./pages/Search/Search";
-import Signup from './pages/SignupPage/Signup';
+import Signup from './pages/SignupPage/SignUp';
 import Login from './pages/LoginPage/Login';
 
 function App() {
